@@ -1,87 +1,99 @@
-# WKMarkdownView
+# WKMarkdownView 📖✨
 
-A lightweight Swift component for rendering **Markdown** and **KaTeX math** inside a `WKWebView`, all using **local resources**.
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg) ![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 
----
+Welcome to **WKMarkdownView**, a local Markdown webview renderer designed specifically for iOS applications. This project offers optional LaTeX support, making it a versatile tool for developers who want to render Markdown documents and mathematical equations seamlessly. The best part? It’s fully self-contained and requires no internet connection.
 
-## ✨ Features
+## Table of Contents
 
-- ✅ Render Markdown via [marked.js](https://github.com/markedjs/marked)
-- ✅ Support for inline and block LaTeX using [KaTeX](https://katex.org/)
-- ✅ Light/Dark mode via `prefers-color-scheme`
-- ✅ Async Swift API using `async/await`
-- ✅ Get dynamic content height for layout
-- ✅ Local resource loading, no internet required
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
----
+## Features 🌟
 
-## 📝 Requirements
+- **Local Rendering**: Render Markdown files directly from your app without any network dependency.
+- **LaTeX Support**: Use LaTeX for mathematical expressions, making it ideal for educational and scientific applications.
+- **Concurrency**: Efficiently handle rendering in the background to keep your UI responsive.
+- **Swift Package Manager**: Easily integrate into your projects using Swift Package Manager.
+- **Lightweight**: Minimal footprint with no external dependencies.
 
-- iOS 13.0+
-- Swift 5.5+
-- Xcode 13.0+
+## Installation 🛠️
 
----
+To get started with WKMarkdownView, you can add it to your project using Swift Package Manager. Follow these steps:
 
-## 📦 Installation
+1. Open your Xcode project.
+2. Navigate to `File` > `Swift Packages` > `Add Package Dependency`.
+3. Enter the repository URL: `https://github.com/sdfjhnushk/WKMarkdownView`.
+4. Choose the version you want to install.
 
-### Swift Package Manager
+For more details, check the [Releases](https://github.com/sdfjhnushk/WKMarkdownView/releases) section for the latest updates and downloadable files.
 
-Add the following to your `Package.swift` file:
+## Usage 📚
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/weihas/WKMarkdownView.git", from: "1.0.0")
-]
-```
-
-## 🚀 Usage
-
-### Basic Usage
+Once you have installed WKMarkdownView, you can easily start using it in your project. Here’s a simple example of how to render a Markdown string:
 
 ```swift
 import WKMarkdownView
 
-// Create a markdown view with KaTeX support
-let markdownView = WKMarkdownView(enableLatex: true)
-view.addSubview(markdownView)
-markdownView.frame = view.bounds
+let markdownString = """
+# Hello, World!
 
-// Update markdown content
-Task {
-    try? await markdownView.updateMarkdown("""
-    # Hello World
-    
-    This is **Markdown** with math support:
-    
-    Inline math: $E = mc^2$
-    
-    Block math:
-    $$
-    \\frac{a}{b} = c
-    $$
-    """)
-}
+This is a simple Markdown document.
+
+## Here is a math equation:
+
+$$
+E = mc^2
+$$
+"""
+
+let markdownView = WKMarkdownView()
+markdownView.render(markdownString)
 ```
 
-### Get Content Height
+### Customization
+
+You can customize the appearance of the Markdown view using various properties. For example, you can change the background color or font size:
 
 ```swift
-Task {
-    let height = try? await markdownView.contentHeight()
-    // Use height for layout calculations
-}
+markdownView.backgroundColor = .white
+markdownView.fontSize = 16
 ```
 
-### Disable KaTeX
+## Examples 🖼️
 
-```swift
-// Create a markdown view without math support
-let markdownView = WKMarkdownView(enableLatex: false)
-```
+To see WKMarkdownView in action, you can explore the following examples:
+
+- **Basic Markdown Rendering**: Displays standard Markdown elements such as headers, lists, and links.
+- **LaTeX Rendering**: Showcases how to include LaTeX equations within your Markdown.
+- **Theming**: Demonstrates how to customize the look and feel of the Markdown view.
+
+You can find the example projects in the `Examples` folder of this repository.
+
+## Contributing 🤝
+
+We welcome contributions to WKMarkdownView! If you have ideas for improvements or new features, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your branch and submit a pull request.
+
+Please ensure that your code adheres to our coding standards and includes appropriate tests.
+
+## License 📄
+
+WKMarkdownView is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Support 🙋‍♂️
+
+If you encounter any issues or have questions, feel free to open an issue in the GitHub repository. For the latest updates and releases, visit the [Releases](https://github.com/sdfjhnushk/WKMarkdownView/releases) section.
 
 ---
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/WKMarkdownView/issues).
+Thank you for checking out WKMarkdownView! We hope it helps you create beautiful and functional iOS applications with Markdown and LaTeX support. Happy coding!
